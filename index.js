@@ -20,6 +20,10 @@ module.exports = function(Promise)
         if (promises.length) {
           var promise = promises.shift();
 
+          if (!promise || typeof promise.then !== 'function') {
+            promise = Promise.resolve();
+          }
+
           promise
           .then(next)
           .catch(reject);
@@ -33,4 +37,3 @@ module.exports = function(Promise)
     });
   }
 };
-

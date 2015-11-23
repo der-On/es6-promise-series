@@ -8,7 +8,6 @@ module.exports = function(Promise) {
 
     return new Promise(function (resolve, reject) {
       function next(result) {
-        console.log('next', promises.length, (new Date()).getTime());
         var concurrentPromises = [];
         var promise;
 

@@ -1,7 +1,24 @@
 "use strict";
 
-module.exports = function(Promise) {
-  Promise.series = function (promises, concurrent) {
+function promiseSupported(Promise){
+	return typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1;
+}
+
+module.exports = function(_Promise) {
+
+	if (!promiseSupported(Promise)){
+		throw new Error("Promise not supported");
+	}
+
+	if (_Promise && typeof _Promise.all === "function" && typeof _Promise.race === "function"){
+		 return arguments[0].series = series;
+	} else {
+		return series.apply(this, arguments);
+	}
+};
+
+
+function series (promises, concurrent) {
     var results = null;
     promises = promises.slice();
     concurrent = concurrent || 1;
@@ -42,5 +59,4 @@ module.exports = function(Promise) {
 
       next();
     });
-  };
-};
+  }

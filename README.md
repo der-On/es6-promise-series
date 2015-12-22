@@ -4,6 +4,28 @@
 
 Execute promises in series
 
+Usage
+
+```javascript
+/**
+ * Runs promises in series
+ * @param  {Array} list of promises or functions returning promises
+ * @param  {Number} (optional) number of concurrent promises, of omitted no concurrency will happen
+ * @return {Promise}
+ */
+import series from 'series'
+
+series([
+ aPromise,
+ anotherPromise
+], 4)
+  .then(function (results) {
+    ...
+  });
+```
+
+Old usage
+
 ```javascript
 /**
  * Runs promises in series
@@ -19,3 +41,4 @@ Promise.series([
     ...
   });
 ```
+

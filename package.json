@@ -4,7 +4,7 @@
   "description": "Execute promises in series",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/.bin/mocha index.test.js"
+    "test": "_mocha *.test.js"
   },
   "repository": {
     "type": "git",

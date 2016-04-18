@@ -1,13 +1,14 @@
 "use strict";
 
 function promiseSupported(Promise){
-	return typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1;
+	return typeof Promise !== "undefined" && typeof Promise.resolve !== 'function';
 }
 
 module.exports = function(_Promise) {
+	_Promise = _Promise || Promise;
 
-	if (!promiseSupported(Promise)){
-		throw new Error("Promise not supported");
+	if (!promiseSupported((_Promise))) {
+		throw new Error('Promise not supported');
 	}
 
 	if (_Promise && typeof _Promise.all === "function" && typeof _Promise.race === "function"){

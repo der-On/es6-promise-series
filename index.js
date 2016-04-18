@@ -1,7 +1,7 @@
 "use strict";
 
 function promiseSupported(Promise){
-	return typeof Promise !== "undefined" && typeof Promise.resolve !== 'function';
+	return typeof Promise !== "undefined";
 }
 
 module.exports = function(_Promise) {
